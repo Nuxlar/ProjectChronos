@@ -20,13 +20,14 @@ namespace ProjectChronos.Items.Green
 
         public override string ItemPickupDesc => "Hits that deal <style=cIsDamage>more than 400% damage</style> also create a <style=cIsUtility>Chronosphere</style> that <style=cIsUtility>freezes enemies and projectiles in time</style> for <style=cIsUtility>5</style> seconds. Recharges every <style=cIsUtility>20</style> seconds.";
 
-        public override string ItemFullDescription => $"Hits that deal <style=cIsDamage>more than 400% damage</style> also creates a <style=cIsUtility>Chronosphere</style> that <style=cIsUtility>freezes enemies and projectiles in time</style> for <style=cIsUtility>5</style> seconds. Recharges every <style=cIsUtility>20</style> <style=cStack>(-1 per stack)</style> seconds. Caps at <style=cIsUtility>10</style> seconds.";
+        public override string ItemFullDescription => $"Hits that deal <style=cIsDamage>more than 400% damage</style> also create a <style=cIsUtility>Chronosphere</style> that <style=cIsUtility>freezes enemies and projectiles in time</style> for <style=cIsUtility>5</style> seconds. Recharges every <style=cIsUtility>20</style> <style=cStack>(-2 per stack)</style> seconds. Caps at <style=cIsUtility>10</style> seconds.";
 
         public override string ItemLore => """
         <style=cMono>Welcome to DataScraper (v3.1.53)
         $ Scraping memory...
         $ Resolving...
         Complete</style>
+        Ain't nothing here yet.
         """;
 
         public override ItemTier Tier => ItemTier.Tier2;
@@ -97,7 +98,7 @@ namespace ProjectChronos.Items.Green
                     {
                         if (attackerBody.HasBuff(ProjectChronos.timeBandOnBuff))
                         {
-                            int cdDuration = Mathf.Clamp(20 + (itemCount - 1), 10, 20);
+                            int cdDuration = Mathf.Clamp(20 - ((itemCount * 2) - 2), 10, 20);
                             attackerBody.RemoveBuff(ProjectChronos.timeBandOnBuff);
                             for (int duration = 1; duration <= cdDuration; ++duration)
                                 attackerBody.AddTimedBuff(ProjectChronos.timeBandOffBuff, duration);

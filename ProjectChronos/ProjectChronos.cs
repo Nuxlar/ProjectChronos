@@ -14,7 +14,7 @@ using RoR2.Projectile;
 
 namespace ProjectChronos
 {
-  [BepInPlugin("com.Nuxlar.ProjectChronos", "ProjectChronos", "0.5.1")]
+  [BepInPlugin("com.Nuxlar.ProjectChronos", "ProjectChronos", "0.6.0")]
 
   public class ProjectChronos : BaseUnityPlugin
   {
@@ -31,7 +31,6 @@ namespace ProjectChronos
     public static DotAPI.CustomDotVisual decayDotVisual;
     public GameObject decayEffectPrefab = PrefabAPI.InstantiateClone(Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Common/CrippleEffect.prefab").WaitForCompletion(), "DecayEffect", false);
     public GameObject timeFrozenEffect = PrefabAPI.InstantiateClone(Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Common/CrippleEffect.prefab").WaitForCompletion(), "TimeFrozenEffect", false);
-    // public static GameObject chronosphereEffect = PrefabAPI.InstantiateClone(Addressables.LoadAssetAsync<GameObject>("RoR2/DLC1/ElementalRingVoid/ElementalRingVoidBlackHole.prefab").WaitForCompletion(), "Chronosphere", false);
     public static GameObject chronosphereEffect = PrefabAPI.InstantiateClone(Addressables.LoadAssetAsync<GameObject>("RoR2/DLC1/Railgunner/RailgunnerMineAltDetonated.prefab").WaitForCompletion(), "Chronosphere", false);
     private Material timeFrozenMaterial = Addressables.LoadAssetAsync<Material>("RoR2/Base/mysteryspace/matSuspendedInTime.mat").WaitForCompletion();
     private BuffDef jailerBuff = Addressables.LoadAssetAsync<BuffDef>("RoR2/DLC1/VoidJailer/bdJailerSlow.asset").WaitForCompletion();
