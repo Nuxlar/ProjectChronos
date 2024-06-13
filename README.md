@@ -26,6 +26,10 @@
 
 ## Changelog
 
+**0.6.1**
+
+- Fixes enemies in chronosphere not being completely frozen for the duration
+
 **0.6.0**
 
 - Adds Fractured Band

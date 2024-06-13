@@ -14,7 +14,7 @@ using RoR2.Projectile;
 
 namespace ProjectChronos
 {
-  [BepInPlugin("com.Nuxlar.ProjectChronos", "ProjectChronos", "0.6.0")]
+  [BepInPlugin("com.Nuxlar.ProjectChronos", "ProjectChronos", "0.6.1")]
 
   public class ProjectChronos : BaseUnityPlugin
   {
@@ -62,7 +62,7 @@ namespace ProjectChronos
 
       BuffWard ward = chronosphereEffect.GetComponent<BuffWard>();
       ward.buffDef = timeFrozenBuff;
-      ward.interval = 1f;
+      // ward.interval = 1f;
       ward.expireDuration = 5f;
       ward.rangeIndicator = chronosphere.transform;
 
