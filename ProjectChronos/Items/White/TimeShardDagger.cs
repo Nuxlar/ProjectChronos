@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using BepInEx.Configuration;
+using HG;
 using R2API;
 using RoR2;
 using RoR2.Projectile;
@@ -62,6 +64,7 @@ namespace ProjectChronos.Items.White
         {
             On.RoR2.GlobalEventManager.OnHitEnemy += ApplyDecay;
         }
+
         private void ApplyDecay(On.RoR2.GlobalEventManager.orig_OnHitEnemy orig, GlobalEventManager self, DamageInfo damageInfo, GameObject victim)
         {
             orig(self, damageInfo, victim);
@@ -74,14 +77,14 @@ namespace ProjectChronos.Items.White
                 int itemCount = GetCount(attackerBody);
                 if (itemCount > 0)
                 {
-                    if (Util.CheckRoll(10f * itemCount, attackerBody.master))
+                    if (Util.CheckRoll(10f * itemCount, attackerBody.master) && !victimBody.HasBuff(ProjectChronos.decayBuff))
                     {
                         InflictDotInfo inflictDotInfo = new InflictDotInfo()
                         {
                             attackerObject = damageInfo.attacker,
                             victimObject = victim,
-                            damageMultiplier = 0f,
-                            duration = 5f,
+                            damageMultiplier = 1f,
+                            duration = 10f,
                             dotIndex = ProjectChronos.decayDot,
                         };
                         DotController.InflictDot(ref inflictDotInfo);

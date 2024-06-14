@@ -14,7 +14,7 @@ using RoR2.Projectile;
 
 namespace ProjectChronos
 {
-  [BepInPlugin("com.Nuxlar.ProjectChronos", "ProjectChronos", "0.6.1")]
+  [BepInPlugin("com.Nuxlar.ProjectChronos", "ProjectChronos", "0.6.2")]
 
   public class ProjectChronos : BaseUnityPlugin
   {
@@ -145,8 +145,8 @@ namespace ProjectChronos
       decayDotBehaviour = DecayBehavior;
       decayDot = DotAPI.RegisterDotDef(new DotController.DotDef()
       {
-        interval = 1f,
-        damageCoefficient = 0.0f,
+        interval = 0.5f,
+        damageCoefficient = 0.6f,
         damageColorIndex = DamageColorIndex.Fragile,
         associatedBuff = decayBuff,
         resetTimerOnAdd = false
@@ -157,38 +157,16 @@ namespace ProjectChronos
     {
       if (dotStack.dotIndex != decayDot)
         return;
-      if (self.HasDotActive(decayDot))
-      {
-        List<DotController.DotStack> dotList = self.dotStackList;
-        foreach (DotController.DotStack dot in dotList)
-        {
-          if (dot.dotIndex == decayDot)
-          {
-            self.RemoveDotStackAtServer(dotList.IndexOf(dot));
-          }
-        }
-      }
-      float maxHP = self.victimBody.healthComponent.fullCombinedHealth;
-      float currentHP = self.victimBody.healthComponent.health;
 
-      float missingHPPercentage = (maxHP - currentHP) / maxHP;
-      float timerAddition = Mathf.Clamp(Mathf.Pow(missingHPPercentage, 3) * 100, 5, 15);
-      float hpDamage = maxHP * Mathf.Clamp(Mathf.Pow(missingHPPercentage, 3), 0.05f, 0.15f) / timerAddition;
+      dotStack.damageType = DamageType.DoT | DamageType.BypassArmor;
 
-      float baseDamage = 0.6f;
-      if (hpDamage < baseDamage)
+      if (self.victimBody && self.victimHealthComponent)
       {
-        dotStack.damage = baseDamage;
-        // dotStack.timer = 5f;
-      }
-      else
-      {
-        dotStack.damage = hpDamage;
+        float maxHP = self.victimHealthComponent.fullCombinedHealth;
+        float hpDamage = maxHP / 100f * 0.5f * 0.5f;
 
-        if (timerAddition > 5)
-          dotStack.timer += timerAddition;
+        dotStack.damage = Mathf.Min(Mathf.Max(hpDamage, dotStack.damage), dotStack.damage * 25f);
       }
-      dotStack.damageType = DamageType.DoT;
     }
 
     private void CreateBuffs()

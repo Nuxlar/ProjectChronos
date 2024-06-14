@@ -19,12 +19,18 @@
 |                              Legendary                               |                    |                                                                                                          |
 | ![harmonizer icon](https://i.ibb.co/BftrpSn/tex-Harmonizer-Icon.png) | Eternal Harmonizer | Increases move speed by **25% (+25% per stack)** and decreases slow debuffs by **50% (+25% per stack)**. |
 
-|                                         Icon                                         | Debuff | Desc                                                                                                                                                                                                                    |
-| :----------------------------------------------------------------------------------: | :----: | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-|                                         DoTs                                         |        |                                                                                                                                                                                                                         |
-| <img src="https://i.ibb.co/sqWXx6k/bd-Decay-Icon.png" alt="decay icon" width="100"/> | Decay  | Unstackable damage over time that increases in potency the lower the victim's HP is. Minimum of 5% over 5s, Maximum of 15% over 15s (can be extended with Accelerator). Can be reapplied to prevent lower damage ticks. |
+|                                         Icon                                         | Debuff | Desc                                                                                                                                                                                                                            |
+| :----------------------------------------------------------------------------------: | :----: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|                                         DoTs                                         |        |                                                                                                                                                                                                                                 |
+| <img src="https://i.ibb.co/sqWXx6k/bd-Decay-Icon.png" alt="decay icon" width="100"/> | Decay  | Unstackable damage over time that deals 5% of victim's total HP over 10s (can be extended with Accelerator) and bypasses armor. Caps at 5000% base damage per second. If 5% is too low, it'll deal 120% base damage per second. |
 
 ## Changelog
+
+**0.6.2**
+
+- Fixes and Reworks Decay
+  - Decay was not working properly
+  - Reworked to be more consistent
 
 **0.6.1**
 
