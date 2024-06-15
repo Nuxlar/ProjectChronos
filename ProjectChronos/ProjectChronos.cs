@@ -14,7 +14,7 @@ using RoR2.Projectile;
 
 namespace ProjectChronos
 {
-  [BepInPlugin("com.Nuxlar.ProjectChronos", "ProjectChronos", "0.6.2")]
+  [BepInPlugin("com.Nuxlar.ProjectChronos", "ProjectChronos", "0.6.3")]
 
   public class ProjectChronos : BaseUnityPlugin
   {
@@ -67,6 +67,9 @@ namespace ProjectChronos
       ward.rangeIndicator = chronosphere.transform;
 
       ContentAddition.AddProjectile(chronosphereEffect);
+
+      this.ReplaceMatShaders("RoR2/Base/Shaders/HGStandard.shader", "assets/matcylindetrimnux.mat", "assets/matsteelnux.mat", "assets/matcylindernux.mat", "assets/matringnux.mat", "assets/polygon arsenal/materials/main/polysolidglow.mat", "assets/polygon arsenal/materials/gradients/polyspriteglow_add.mat", "assets/polygon arsenal/materials/rimlight/solid/blackhole/polyblackholeblue.mat");
+      this.ReplaceMatShaders("Calm Water/CalmWater - SingleSided.shader", "assets/matglassnux.mat");
 
       //This section automatically scans the project for all items
       IEnumerable<Type> ItemTypes = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(ItemBase)));
@@ -271,5 +274,19 @@ namespace ProjectChronos
       TempVisualEffectAPI.EffectCondition decayCondition = (CharacterBody body) => body.HasBuff(decayBuff);
       TempVisualEffectAPI.AddTemporaryVisualEffect(decayEffectPrefab, decayCondition);
     }
+
+    private void ReplaceMatShaders(
+       string shaderPath,
+       params string[] materialPaths)
+    {
+      Shader shader = Addressables.LoadAssetAsync<Shader>(shaderPath).WaitForCompletion();
+      foreach (string materialPath in materialPaths)
+      {
+        Material material = ProjectChronos.assetBundle.LoadAsset<Material>(materialPath);
+        Debug.LogWarning(material);
+        material.shader = shader;
+      }
+    }
+
   }
 }

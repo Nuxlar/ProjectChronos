@@ -26,6 +26,11 @@
 
 ## Changelog
 
+**0.6.3**
+
+- Swaps most materials to Hopoo shaders
+- Updates assetbundle
+
 **0.6.2**
 
 - Fixes and Reworks Decay
